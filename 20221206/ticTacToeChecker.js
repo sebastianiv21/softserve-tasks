@@ -14,7 +14,7 @@ function gameChecker(board) {
 }
 
 console.log(gameChecker([
-    [1, 2, 1],
+    [0, 1, 1],
     [2, 1, 2],
-    [2, 1, 2],
+    [2, 1, 0],
   ]));
