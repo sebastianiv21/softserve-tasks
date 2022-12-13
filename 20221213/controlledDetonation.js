@@ -4,26 +4,26 @@ const safePositions = (mineField) => {
   const CHARGE = 'C';
   const GROUND = '.';
 
-  const mines = [];
-  const safePos = [];
-
   // Shallow copy
   // const finalField = [...mineField];
 
   // Deep copy
   const finalField = JSON.parse(JSON.stringify(mineField));
 
-  const getPosOf = (item, field, posArr) => {
-    field.map((row, x) => {
-      let y = row.indexOf(item);
-      while (y != -1) {
-        posArr.push([x, y]);
+  const getPosOf = (item, field) => {
+    const posArr = [];
+    field.forEach((row, x) => {
+      let y = -1;
+      do {
         y = row.indexOf(item, y + 1);
-      }
+        if (y != -1) posArr.push([x, y]);
+      } while (y != -1);
     });
+
+    return posArr;
   };
 
-  getPosOf(MINE, mineField, mines);
+  const mines = getPosOf(MINE, mineField);
 
   mines.forEach(([x, y]) => {
     for (let i = x; i >= 0; i--) {
@@ -56,7 +56,7 @@ const safePositions = (mineField) => {
     }
   });
 
-  getPosOf(GROUND, finalField, safePos);
+  safePos = getPosOf(GROUND, finalField);
 
   return safePos;
 };
