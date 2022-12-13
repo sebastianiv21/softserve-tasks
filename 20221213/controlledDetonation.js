@@ -3,8 +3,6 @@ const safePositions = (mineField) => {
   const TREE = 'T';
   const CHARGE = 'C';
   const GROUND = '.';
-  const RANGES_X = [];
-  const RANGES_Y = [];
 
   const mines = [];
   const safePos = [];
@@ -26,14 +24,6 @@ const safePositions = (mineField) => {
   };
 
   getPosOf(MINE, mineField, mines);
-
-  //   mineField.map((row, x) => {
-  //     let y = row.indexOf(MINE);
-  //     while (y != -1) {
-  //       mines.push([x, y]);
-  //       y = row.indexOf(MINE, y + 1);
-  //     }
-  //   });
 
   mines.forEach(([x, y]) => {
     for (let i = x; i >= 0; i--) {
@@ -67,14 +57,6 @@ const safePositions = (mineField) => {
   });
 
   getPosOf(GROUND, finalField, safePos);
-
-//   finalField.map((row, x) => {
-//     let y = row.indexOf(GROUND);
-//     while (y != -1) {
-//       safePos.push([x, y]);
-//       y = row.indexOf(GROUND, y + 1);
-//     }
-//   });
 
   return safePos;
 };
