@@ -1,3 +1,22 @@
-const envelopes = (env1, env2) => {};
+const envelopes = (env1, env2) => {
+    if (typeof env1 !== 'object' || typeof env2 !== 'object')
+    throw { status: 'failed', reason: 'Input parameters must be objects' };
+  const result =
+    env1.a > env2.c && env1.b > env2.d
+      ? 'Envelope 1'
+      : env1.a < env2.c && env1.b < env2.d
+      ? 'Envelope 2'
+      : 0;
+  return result;
+};
+
+// Input parameters: envelope1 and envelope2 objects
+
+//Output: Envelope (bigger one) number if nesting is possible, 0 if nesting is not possible.
+try {
+    console.log(envelopes({ a: 3.6, b: 6 }, { c: 3.5, d: 5 }));
+  } catch (e) {
+    console.error(e);
+  }
 
 export default envelopes;

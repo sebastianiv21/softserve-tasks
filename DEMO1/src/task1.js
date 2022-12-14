@@ -6,14 +6,13 @@ const chessBoard = (height, width, char) => {
   if (typeof char !== 'string')
     throw { status: 'failed', reason: 'Character to display must be a string' };
   let board = '';
-  for(let i = 0; i < height; i++){
-    for(let j = 0; j < width; j++){
-     board += (j % 2) == (i % 2) ? char : ' ';
+  for (let i = 0; i < height; i++) {
+    for (let j = 0; j < width; j++) {
+      board += j % 2 == i % 2 ? char : ' ';
     }
     if (i !== width - 1) board += '\n';
-   }
+  }
   return board;
 };
 
 export default chessBoard;
-// how to know if two numbers are less than 0 in js?
