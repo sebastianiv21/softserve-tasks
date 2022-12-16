@@ -10,9 +10,6 @@ const envelopes = (env1, env2) => {
   return result;
 };
 
-// Input parameters: envelope1 and envelope2 objects
-
-//Output: Envelope (bigger one) number if nesting is possible, 0 if nesting is not possible.
 try {
     console.log(envelopes({ a: 3.6, b: 6 }, { c: 3.5, d: 5 }));
   } catch (e) {

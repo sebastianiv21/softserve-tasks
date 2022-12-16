@@ -1,9 +1,3 @@
-// Print the triangles in descending order of their area.
-
-// Input parameters: array of triangle objects
-
-// Output: ordered array of triangle names
-
 const sortTriangles = (arr) => {
   const heron = (triangle) => {
     const values = Object.values(triangle);

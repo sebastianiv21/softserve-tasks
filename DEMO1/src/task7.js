@@ -1,9 +1,3 @@
-// Output all Fibonacci numbers that satisfy the constraint passed to the function: they are in the specified range or have the specified length.
-
-// Input parameters: object with min and max fields {min: 3, max: 65}, or length field
-
-// Output: array of numbers
-
 const fibonacciSeries = (constraint) => {
   const fib = (n) => {
     if (n <= 1) return n;
@@ -47,8 +41,8 @@ const fibonacciSeries = (constraint) => {
 };
 
 try {
-  //   console.log(fibonacciSeries({ min: 4, max: 50 }));
-  console.log(fibonacciSeries(2));
+    console.log(fibonacciSeries({ min: 2, max: 50 }));
+  // console.log(fibonacciSeries(2));
 } catch (e) {
   console.error(e);
 }
