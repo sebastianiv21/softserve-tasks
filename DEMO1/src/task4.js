@@ -1,13 +1,15 @@
-const palindrome = (num) => {};
+const palindrome = (num) => {
+  if (!num)
+  throw { status: 'failed', reason: 'Insert a number input' };
+  if (typeof num !== 'number')
+    throw { status: 'failed', reason: 'Input\'s type must be number' };
+  if (num <= 10)
+    throw { status: 'failed', reason: 'Input must be greater than ten' };
 
-export default palindrome;
+  const reversedNum = num.toString().split('').reverse().join('');
+  if (num == reversedNum) return num;
+  return 0;
+};
 
-function isPalindrome(str) {
-    var len = Math.floor(str.length / 2);
-    for (var i = 0; i < len; i++)
-      if (str[i] !== str[str.length - i - 1])
-        return false;
-    return true;
-  }
+module.exports = palindrome;
 
-console.log(isPalindrome('3443'));

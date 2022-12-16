@@ -1,12 +1,18 @@
 const numericSequence = (len, min) => {
-    const arr = [];
-    for (let i = 0; arr.length < len; i++) {
-        if (i*i >= min) arr.push(i);
-    }
+  if (!len || !min)
+    throw { status: 'failed', reason: 'Insert all the parameters' };
+  if (typeof len !== 'number' || typeof min !== 'number' || len < 0 || min < 0)
+    throw {
+      status: 'failed',
+      reason: 'Input fields must be numbers greater than zero',
+    };
 
-    return arr.join()
+  const arr = [];
+  for (let i = 0; arr.length < len; i++) {
+    if (i * i >= min) arr.push(i);
+  }
+
+  return arr.join();
 };
 
-console.log(numericSequence(5,4));
-
-export default numericSequence;
+module.exports = numericSequence;

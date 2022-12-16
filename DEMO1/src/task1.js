@@ -1,8 +1,13 @@
 const chessBoard = (height, width, char) => {
+  if (!height || !width || !char)
+    throw { status: 'failed', reason: 'Insert all the parameters' };
   if (isNaN(height) || isNaN(width))
     throw { status: 'failed', reason: 'Height and width must be numbers' };
   if (height < 0 || width < 0)
-    throw { status: 'failed', reason: 'Height and width must be greater than zero' };
+    throw {
+      status: 'failed',
+      reason: 'Height and width must be greater than zero',
+    };
   if (typeof char !== 'string')
     throw { status: 'failed', reason: 'Character to display must be a string' };
   let board = '';
@@ -15,4 +20,4 @@ const chessBoard = (height, width, char) => {
   return board;
 };
 
-export default chessBoard;
+module.exports = chessBoard;

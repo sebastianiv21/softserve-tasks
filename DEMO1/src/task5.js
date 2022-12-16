@@ -1,4 +1,17 @@
 const luckyTickets = (obj) => {
+  if (!obj)
+  throw { status: 'failed', reason: 'Insert an object input' };
+  if (!(typeof obj === 'object' && !Array.isArray(obj)))
+    throw { status: 'failed', reason: 'Input must be an object' };
+  if (!(Object.keys(obj).includes('min') && Object.keys(obj).includes('max')))
+    throw {
+      status: 'failed',
+      reason: 'Object must have min and max properties',
+    };
+    if (!Object.values(obj).every((element) => typeof element === 'string' && element.length === 6))
+    throw { status: 'failed', reason: 'Min and max must be strings of length 6' };
+
+
   const simple = (i) => {
     return (
       i.toString().length == 7 &&
@@ -63,7 +76,4 @@ const luckyTickets = (obj) => {
   };
 };
 
-//console.log(luckyTickets({ min: '123456', max: '123466' }));
-console.log(luckyTickets({ min: '000000', max: '001431' }));
-
-export default luckyTickets;
+module.exports = luckyTickets;

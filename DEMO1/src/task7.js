@@ -1,4 +1,7 @@
 const fibonacciSeries = (constraint) => {
+  if (!constraint)
+  throw { status: 'failed', reason: 'Insert a constraint' };
+  
   const fib = (n) => {
     if (n <= 1) return n;
 
@@ -16,6 +19,15 @@ const fibonacciSeries = (constraint) => {
           status: 'failed',
           reason: 'Input object must have min and max fields',
         };
+      if (
+        !Object.values(constraint).every(
+          (element) => typeof element === 'number' && element >= 0
+        )
+      )
+        throw {
+          status: 'failed',
+          reason: 'Min and max properties must be numbers greater than zero',
+        };
 
       let i = 0;
       do {
@@ -24,6 +36,9 @@ const fibonacciSeries = (constraint) => {
       } while (fib(i) <= constraint.max);
       break;
     case 'number':
+      if (constraint <= 0)
+        throw { status: 'failed', reason: 'Length must be greater than zero' };
+
       let j = 0;
       do {
         if (fib(j).toString().length == constraint) series.push(fib(j));
@@ -40,11 +55,4 @@ const fibonacciSeries = (constraint) => {
   return series;
 };
 
-try {
-    console.log(fibonacciSeries({ min: 2, max: 50 }));
-  // console.log(fibonacciSeries(2));
-} catch (e) {
-  console.error(e);
-}
-
-export default fibonacciSeries;
+module.exports = fibonacciSeries;

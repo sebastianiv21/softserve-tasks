@@ -1,8 +1,7 @@
 {
   "name": "demo1",
   "version": "1.0.0",
-  "type": "module",
-  "description": "",
+  "description": "Demo 1 for Web UI Project Lab",
   "main": "main.js",
   "scripts": {
     "test": "mocha"
