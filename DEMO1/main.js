@@ -9,7 +9,7 @@ const fibonacciSeries = require('./src/task7');
 // Uncomment line according to the task
 try {
   // Task 1 - Input parameters: length, width, character to display.
-  console.log(chessBoard(4, 5, '*'));
+  // console.log(chessBoard(4, 5, '*'));
 
   // Task 2 - Input parameters: envelope1 and envelope2 objects.
   // console.log(envelopes({ a: 3.6, b: 6 }, { c: 3.5, d: 5 }));
@@ -23,7 +23,7 @@ try {
   // );
 
   // Task 4 - Input parameters: number.
-  //   console.log(extractPalindrome(3443));
+    // console.log(extractPalindrome(1233443533423));
 
   // Task 5 - Input parameters: context object with min and max fields (strings).
   // console.log(luckyTickets({ min: '000000', max: '999999' }));

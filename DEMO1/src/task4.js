@@ -29,7 +29,7 @@ const extractPalindrome = (num) => {
     }
   }
 
-  return palNum == '' ? 0 : palNum;
+  return palNum ? palNum : 0;
 };
 
 module.exports = extractPalindrome;

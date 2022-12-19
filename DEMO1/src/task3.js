@@ -11,10 +11,7 @@ const sortTriangles = (arr) => {
 
   const heron = (triangle) => {
     const values = Object.values(triangle);
-    const name = values[0];
-    const a = values[1];
-    const b = values[2];
-    const c = values[3];
+    const [name, a, b, c] = values;
 
     const s = (a + b + c) / 2;
     const area = Math.sqrt(s * (s - a) * (s - b) * (s - c)).toFixed(2);
