@@ -1,6 +1,5 @@
 const luckyTickets = (obj) => {
-  if (!obj)
-  return { status: 'failed', reason: 'Insert an object input' };
+  if (!obj) return { status: 'failed', reason: 'Insert an object input' };
   if (!(typeof obj === 'object' && !Array.isArray(obj)))
     return { status: 'failed', reason: 'Input must be an object' };
   if (!(Object.keys(obj).includes('min') && Object.keys(obj).includes('max')))
@@ -8,9 +7,15 @@ const luckyTickets = (obj) => {
       status: 'failed',
       reason: 'Object must have min and max properties',
     };
-    if (!Object.values(obj).every((element) => typeof element === 'string' && element.length === 6))
-    return { status: 'failed', reason: 'Min and max must be strings of length 6' };
-
+  if (
+    Object.values(obj).some(
+      (element) => typeof element !== 'string' || element.length !== 6
+    )
+  )
+    return {
+      status: 'failed',
+      reason: 'Min and max must be strings of length 6',
+    };
 
   const simple = (i) => {
     return (
@@ -31,7 +36,7 @@ const luckyTickets = (obj) => {
     arr.shift();
 
     arr.forEach((n) =>
-      Number(n) % 2 == 0 ? evens.push(Number(n)) : odds.push(Number(n))
+      Number(n) & 1 ? odds.push(Number(n)) : evens.push(Number(n))
     );
 
     const sumOdds =
@@ -54,12 +59,9 @@ const luckyTickets = (obj) => {
   let complicatedTickets = 0;
 
   for (let i = min; i <= max; i++) {
-    if (simple(i)) {
-      simpleTickets++;
-    }
-    if (complicated(i)) {
-      complicatedTickets++;
-    }
+    if (simple(i)) simpleTickets++;
+
+    if (complicated(i)) complicatedTickets++;
   }
 
   const winningMethod =

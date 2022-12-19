@@ -20,8 +20,8 @@ const fibonacciSeries = (constraint) => {
           reason: 'Input object must have min and max fields',
         };
       if (
-        !Object.values(constraint).every(
-          (element) => typeof element === 'number' && element >= 0
+        Object.values(constraint).some(
+          (element) => typeof element !== 'number' || element < 0
         )
       )
         return {
@@ -36,8 +36,7 @@ const fibonacciSeries = (constraint) => {
       } while (fib(i) <= constraint.max);
       break;
     case 'number':
-      if (constraint <= 0)
-        return { status: 'failed', reason: 'Length must be greater than zero' };
+      if (constraint <= 0) return { status: 'failed', reason: 'Length must be greater than zero' };
 
       let j = 0;
       do {
