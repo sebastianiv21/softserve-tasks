@@ -1,6 +1,6 @@
 const fibonacciSeries = (constraint) => {
   if (!constraint)
-  throw { status: 'failed', reason: 'Insert a constraint' };
+  return { status: 'failed', reason: 'Insert a constraint' };
   
   const fib = (n) => {
     if (n <= 1) return n;
@@ -15,7 +15,7 @@ const fibonacciSeries = (constraint) => {
       if (
         !(constraint.hasOwnProperty('min') && constraint.hasOwnProperty('max'))
       )
-        throw {
+        return {
           status: 'failed',
           reason: 'Input object must have min and max fields',
         };
@@ -24,7 +24,7 @@ const fibonacciSeries = (constraint) => {
           (element) => typeof element === 'number' && element >= 0
         )
       )
-        throw {
+        return {
           status: 'failed',
           reason: 'Min and max properties must be numbers greater than zero',
         };
@@ -37,7 +37,7 @@ const fibonacciSeries = (constraint) => {
       break;
     case 'number':
       if (constraint <= 0)
-        throw { status: 'failed', reason: 'Length must be greater than zero' };
+        return { status: 'failed', reason: 'Length must be greater than zero' };
 
       let j = 0;
       do {
@@ -46,7 +46,7 @@ const fibonacciSeries = (constraint) => {
       } while (fib(j).toString().length <= constraint);
       break;
     default:
-      throw {
+      return {
         status: 'failed',
         reason: 'Input must be a number or an object with min and max fields',
       };

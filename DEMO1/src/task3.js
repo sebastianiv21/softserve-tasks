@@ -1,13 +1,13 @@
 const sortTriangles = (arr) => {
   if (!arr)
-  throw { status: 'failed', reason: 'Insert an array input' };
+  return { status: 'failed', reason: 'Insert an array input' };
   if (!Array.isArray(arr))
-    throw { status: 'failed', reason: 'Input must be an array' };
+    return { status: 'failed', reason: 'Input must be an array' };
   const isObject = (element) => typeof element === 'object' && !Array.isArray(element);
   if (!arr.every(isObject))
-    throw { status: 'failed', reason: 'Array\'s elements must be objects' };
+    return { status: 'failed', reason: 'Array\'s elements must be objects' };
   if (!arr.every((element) => Object.values(element).length === 4))
-    throw { status: 'failed', reason: 'Objects must have all the required properties' };
+    return { status: 'failed', reason: 'Objects must have all the required properties' };
 
   const heron = (triangle) => {
     const values = Object.values(triangle);

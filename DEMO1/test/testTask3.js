@@ -11,8 +11,13 @@ describe('SortTriangles', () => {
       [ 'TED', 'ABC' ]
     );
   });
-  it('should return an object with the reason why the function failed', function () {
+  it('should return an object with the reason \'Insert an array input\'', function () {
     assert.deepEqual(sortTriangles(), { status: 'failed', reason: 'Insert an array input' });
-    assert.deepEqual(sortTriangles(),{ status: 'failed', reason: 'Input must be an array' });
+  });
+  it('should return an object with the reason \'Input must be an array\'', function () {
+    assert.deepEqual(sortTriangles('x'), { status: 'failed', reason: 'Input must be an array' });
+  });
+  it('should return an object with the reason \'Array\'s elements must be objects\'', function () {
+    assert.deepEqual(sortTriangles(['x']), { status: 'failed', reason: 'Array\'s elements must be objects' });
   });
 });

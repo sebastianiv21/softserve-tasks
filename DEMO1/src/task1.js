@@ -1,21 +1,24 @@
 const chessBoard = (height, width, char) => {
   if (!height || !width || !char)
-    throw { status: 'failed', reason: 'Insert all the parameters' };
+    return { status: 'failed', reason: 'Insert all the parameters' };
   if (isNaN(height) || isNaN(width))
-    throw { status: 'failed', reason: 'Height and width must be numbers' };
+    return { status: 'failed', reason: 'Height and width must be numbers' };
   if (height < 0 || width < 0)
-    throw {
+    return {
       status: 'failed',
       reason: 'Height and width must be greater than zero',
     };
   if (typeof char !== 'string')
-    throw { status: 'failed', reason: 'Character to display must be a string' };
+    return {
+      status: 'failed',
+      reason: 'Character to display must be a string',
+    };
   let board = '';
   for (let i = 0; i < height; i++) {
     for (let j = 0; j < width; j++) {
       board += j % 2 == i % 2 ? char : ' ';
     }
-    if (i !== width - 1) board += '\n';
+    if (i !== height - 1) board += '\n';
   }
   return board;
 };

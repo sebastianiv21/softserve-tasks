@@ -4,11 +4,11 @@ const isPalindrome = (str) => {
 };
 
 const extractPalindrome = (num) => {
-  if (!num) throw { status: 'failed', reason: 'Insert a number input' };
+  if (!num) return { status: 'failed', reason: 'Insert a number input' };
   if (typeof num !== 'number')
-    throw { status: 'failed', reason: "Input's type must be number" };
+    return { status: 'failed', reason: "Input's type must be number" };
   if (num <= 10)
-    throw { status: 'failed', reason: 'Input must be greater than ten' };
+    return { status: 'failed', reason: 'Input must be greater than 10' };
 
   let palLength = 0;
   let palNum = '';
@@ -33,5 +33,3 @@ const extractPalindrome = (num) => {
 };
 
 module.exports = extractPalindrome;
-
-console.log(extractPalindrome(1234437));
