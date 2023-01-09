@@ -4,7 +4,7 @@ export default class ProductView {
   render = (d) => {
     const str = `
     <section class="container">
-      <div class="row gx-3 row-cols-4 justify-content-center">
+      <div class="row gx-5 row-cols-4 justify-content-center">
       ${d.map(this.renderProduct).join('')}
       </div>
     </section>
@@ -13,12 +13,12 @@ export default class ProductView {
     this.DOM_PRODUCTS_LIST.insertAdjacentHTML('afterbegin', str);
   };
 
-  renderProduct = ({ title, price, thumbnail, description }) => {
+  renderProduct = ({ title, price, image, description }) => {
     return `
-    <div class="col mb-3">
+    <div class="col mb-5">
       <div class="card h-100">
         <!--Product image-->
-        <img class="card-img-top p-2" height="200" src="${thumbnail}" alt="${title}">
+        <img class="card-img-top p-2" height="200" src="${image}" alt="${title}">
         <!--Product details-->
         <div class="card-body p-4">
           <div class="text-center">
@@ -37,7 +37,7 @@ export default class ProductView {
         <!--Product actions-->
           <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
             <div class="d-flex text-center gap-2 justify-content-center">
-              <a class="btn btn-outline-info" href="#">Details</a>
+              <a class="btn btn-outline-primary" href="#">Details</a>
               <a class="btn btn-primary" href="#">Add to cart</a>
             </div>
           </div>

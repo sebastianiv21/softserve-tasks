@@ -1,42 +1,17 @@
-const template = `<div class="container-fluid">
-<a class="navbar-brand" href="#">
-<img src="logo.svg" alt="softshop logo" width="24" class="d-inline-block align-text-top me-1">
-<span>SoftShop</span></a>
-<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span>
-</button>
-<div class="collapse navbar-collapse" id="navbarColor01">
-  <ul class="navbar-nav me-auto">
-    <li class="nav-item">
-      <a class="nav-link active" href="#">Home
-        <span class="visually-hidden">(current)</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Features</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Pricing</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">About</a>
-    </li>
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Separated link</a>
-      </div>
-    </li>
-  </ul>
-  <form class="d-flex">
-    <input class="form-control me-sm-2" type="search" placeholder="Search">
-    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-  </form>
+const template = `
+<div class="container-fluid">
+  <a class="navbar-brand ms-2" href="#">
+    <img src="logo.svg" alt="softshop logo" width="24" class="d-inline-block align-text-top me-1">
+    <span>SoftShop</span>
+  </a>
+  <div class="d-flex align-items-center me-2">
+    <button class="btn btn-primary p-1 position-relative">
+      <span>$ 203.64</span>
+      <i class="bi bi-cart4 fs-5 ms-1"></i>
+      <span class="text-primary position-absolute top-0 start-100 translate-middle badge rounded-pill bg-light">+99</span>
+    </button>
+  </div>
 </div>
-</div>`;
+`;
 
 export default template;

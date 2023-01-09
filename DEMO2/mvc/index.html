@@ -11,10 +11,12 @@
       content="width=device-width, initial-scale=1.0"
     />
     <title>SoftShop</title>
+    <!--Web icon-->
     <link
       rel="icon"
       href="logo.svg"
     />
+    <!--Bootstrap v5 template-->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.2.3/flatly/bootstrap.min.css"
@@ -23,10 +25,35 @@
       referrerpolicy="no-referrer"
     />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!--Bootstrap icons-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+    />
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary"></nav>
-    <main class="products-list py-5"></main>
-    <script src="app/main.js" type="module"></script>
+    <nav
+      class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top"
+    ></nav>
+    <main class="d-flex">
+      <aside class="side-menu p-3">
+        <!--start search bar-->
+        <div class="search-component"></div>
+        <!--end search bar-->
+        <hr>
+        <!--start order by price-->
+        <button class='btn btn-secondary btn-order-price w-100'></button>
+        <!--end order by price-->
+        <hr>
+        <!--start filter by category-->
+        <div class="filter-menu"></div>
+        <!--end filter by category-->
+      </aside>
+      <article class="products-list py-3 w-100"></article>
+    </main>
+    <script
+      src="app/main.js"
+      type="module"
+    ></script>
   </body>
 </html>
