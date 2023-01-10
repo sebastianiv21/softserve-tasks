@@ -1,10 +1,9 @@
 export default class ProductModel {
-  #DATA_LINK = 'https://dummyjson.com/products?limit=100';
+  #DATA_LINK = 'https://dummyjson.com/products?limit=10';
   #filteredData = null;
+  #isRightDirection = true;
   #data = [];
   #categories = [];
-  #isRightDirection = true;
-  #prevSorting = null;
 
   constructor(handleLoadData) {
     this.handleLoadData = handleLoadData;
@@ -26,30 +25,18 @@ export default class ProductModel {
       this.#filteredData = [...this.#data];
     }
 
-    switch (this.#prevSorting) {
-      case 'when': {
-        const callback = (a, b) =>
-          multi * (new Date(a.when) - new Date(b.when));
-        this.#filteredData.sort(callback);
-        break;
-      }
-      case 'name': {
-      }
-      case 'status': {
-        const callback = (a, b) => multi * (a.name > b.name ? 1 : -1);
-        this.#filteredData.sort(callback);
-        break;
-      }
-    }
+    const callback = (a, b) => multi * (a.price - b.price);
 
-    return {
-      sortType: this.#prevSorting,
-      data: this.#filteredData,
-      direction: this.#isRightDirection,
-    };
+    this.#filteredData.sort(callback);
+
+    return this.#filteredData;
   };
 
-  filterBy = (category) => {};
+  sortByPrice = () => {
+    this.#isRightDirection = !this.#isRightDirection;
+
+    return this.#sort();
+  };
 
   searchBy = (searchVal) => {
     const search = searchVal.trim();
