@@ -5,7 +5,7 @@ import ProductView from './products-view.js';
 export default class ProductController {
   constructor() {
     this.model = new ProductModel(this.handleLoadData);
-    this.view = new ProductView();
+    this.view = new ProductView(this.handleShowDetails);
 
     this.model.loadData();
     Publisher.subscribe('FILTER_CATEGORIES', this.handleFilterCategories);
@@ -39,4 +39,12 @@ export default class ProductController {
     const data = this.model.searchBy(searchVal);
     this.view.render(data);
   };
+
+  handleShowDetails = (ev) => {
+    const productId = ev.target.dataset.productId;
+    if (productId) {
+      console.log(productId);
+      Publisher.notify('SHOW_DETAILS', productId);
+    }
+  }
 }
