@@ -43,7 +43,6 @@ export default class ProductController {
   handleShowDetails = (ev) => {
     const productId = ev.target.dataset.productId;
     if (productId) {
-      console.log(productId);
       Publisher.notify('SHOW_DETAILS', productId);
     }
   }

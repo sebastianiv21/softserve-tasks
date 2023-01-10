@@ -40,7 +40,7 @@ export default class ProductView {
         <!--Product actions-->
           <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
             <div class="d-flex text-center gap-2 justify-content-center">
-              <button type="button" data-product-id="${id}" class="btn btn-outline-info btn-show-details" >Details</button>
+              <button type="button" data-product-id="${id}" class="btn btn-outline-info btn-show-details" data-bs-toggle="modal" data-bs-target="#detailsModal">Details</button>
               <button type="button" class="btn btn-primary">Add to cart</button>
             </div>
           </div>

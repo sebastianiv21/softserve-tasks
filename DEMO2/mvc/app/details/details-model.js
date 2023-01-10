@@ -9,7 +9,6 @@ export default class DetailsModel {
     fetch(`${this.#PRODUCT_LINK}${id}`)
       .then((r) => r.json())
       .then((d) => {
-        console.log('loadData', d)
         this.handleLoadData(d);
       });
   }
