@@ -72,10 +72,6 @@ export default class CartModel {
     return JSON.parse(object);
   }
 
-  makeOrder = cart => {
-    console.log(cart)
-  }
-
   // function changeObjectProperty(arr, obj, propName, newValue) {
   //   let foundObject = arr.find(elem => elem.id === obj.id);
   //   if (foundObject) {

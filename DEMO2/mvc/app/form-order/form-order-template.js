@@ -3,7 +3,7 @@ const template = `
 <div class="modal-dialog modal-dialog-centered">
   <div class="modal-content form-order-content">
   <div class="modal-header">
-  <h1 class="modal-title fs-5" id="exampleModalLabel">Create a task</h1>
+  <h1 class="modal-title fs-5" id="exampleModalLabel">Order Info</h1>
   <button
     type="button"
     class="btn-close"

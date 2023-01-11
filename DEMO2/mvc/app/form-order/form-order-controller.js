@@ -1,22 +1,32 @@
+import Publisher from "../publisher.js";
 import FormOrderModel from "./form-order-model.js";
 import FormOrderView from "./form-order-view.js";
 
 export default class FormOrderController {
     constructor(){
         this.model = new FormOrderModel();
-        this.view = new FormOrderView(this.handleSaveTask);
+        this.view = new FormOrderView(this.handleSaveOrder);
+
+        Publisher.subscribe('SET_CART_ORDER', this.handleCartOrderData);
     }
 
-    handleSaveTask = _ => {
+    handleSaveOrder = _ => {
         this.view.closeOffValidation();
-        const data = this.view.getInputsData();
-        const isValidData = this.model.checkData(data);
+        const formData = this.view.getInputsData();
+        const isValidData = this.model.checkData(formData);
+        const cart = this.model.cart;
+        const data = {formData, cart};
+        
         if(isValidData.total){
             this.view.closeModal();
-            //Publisher.notify('ON_CREATE_NEW_TASK', data);
+            alert('Order submited successfully')
+            Publisher.notify('ON_CREATE_NEW_ORDER', data);
         }else{
             this.view.showInValid(isValidData);
         }
-        console.log(data, isValidData);        
     } 
+
+    handleCartOrderData = cart => {
+        this.model.cart = cart;
+    }
 }

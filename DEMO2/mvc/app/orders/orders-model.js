@@ -4,6 +4,6 @@ export default class OrdersModel {
   }
 
   loadData(d) {
-    this.handleLoadData();
+    this.handleLoadData(d);
   }
 }

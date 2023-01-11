@@ -3,6 +3,8 @@ export default class FormOrderModel {
     regExpEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     regExpPhone = /^[0-9]{6,20}$/;
 
+    cart = null;
+
     checkName = name => {
         return this.regExpName.test(name.trim());
     }
@@ -37,5 +39,13 @@ export default class FormOrderModel {
                 }
             ]
         };
+    }
+
+    set cart(cart){
+        this.cart = cart;
+    }
+
+    get cart(){
+        return this.cart;
     }
 }

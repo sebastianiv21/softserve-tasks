@@ -44,7 +44,7 @@ export default class CartController {
     const cart = ev.target.dataset.makeOrder;
     if (cart) {
       const parsedCart = this.model.parseObject(cart);
-      this.model.makeOrder(parsedCart);
+      Publisher.notify('SET_CART_ORDER', parsedCart);
     }
   }
 }
