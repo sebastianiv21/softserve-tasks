@@ -1,25 +1,24 @@
 export default class CartModel {
-  cartItems = [];
-  #data = 0;
+  #cartItems = []; 
+
   constructor(handleLoadData) {
     this.handleLoadData = handleLoadData;
   }
 
-  loadData(cartItems = this.cartItems, total = this.total) {
-    this.cartItems = cartItems;
-    this.total = total;
-    this.handleLoadData(this.cartItems, this.total);
+  loadData(cartItems = this.#cartItems) {
+    this.#cartItems = cartItems;
+    this.handleLoadData(this.#cartItems);
   }
 
   addToCart = (item) => {
-    const itemFound = this.cartItems.find((el) => el.id === item.id);
+    const itemFound = this.#cartItems.find((el) => el.id === item.id);
     const inCart = itemFound !== undefined;
     if (inCart) {
       this.incrementByOne(itemFound);
     } else {
       const { id, title, price } = item;
       const cartElement = { id, title, quantity: 1, price };
-      this.cartItems.push(cartElement);
+      this.#cartItems.push(cartElement);
     }
     this.loadData();
   };
@@ -35,7 +34,7 @@ export default class CartModel {
     const total = d.reduce((acc, el) => {
       acc = acc + el.price * el.quantity;
       return acc;
-    }, this.#data);
+    }, 0);
     return total;
   };
 
@@ -46,18 +45,18 @@ export default class CartModel {
     const items = d.reduce((acc, el) => {
       acc = acc + el.quantity;
       return acc;
-    }, this.#data);
+    }, 0);
     return items;
   };
 
   deleteFromCart = (id) => {
-    const index = this.cartItems.findIndex((elem) => elem.id === id);
-    this.cartItems.splice(index, 1);
+    const index = this.#cartItems.findIndex((elem) => elem.id == id);
+    this.#cartItems.splice(index, 1);
     this.loadData();
   };
 
   changeQuantity = (item, value) => {
-    const itemFound = this.cartItems.find((el) => el.id === item.id);
+    const itemFound = this.#cartItems.find((el) => el.id === item.id);
     
     if (value<=0){
       itemFound.quantity = 1
@@ -71,21 +70,12 @@ export default class CartModel {
   parseObject(object){
     return JSON.parse(object);
   }
-
+  
   set cartItems(cartItems){
-    this.cartItems = cartItems;
+    this.#cartItems = cartItems;
   }
 
   get cartItems(){
-    return this.cartItems;
+    return this.#cartItems;
   }
-
-  // function changeObjectProperty(arr, obj, propName, newValue) {
-  //   let foundObject = arr.find(elem => elem.id === obj.id);
-  //   if (foundObject) {
-  //     foundObject[propName] = newValue;
-  //   }
-  //}
 }
-
-// how to know if an object is in an array in js?
