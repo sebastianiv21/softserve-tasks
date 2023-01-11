@@ -9,7 +9,7 @@ export default class CartView {
     this.DOM_CART_CONTENT = this.DOM_CART_CONTAINER.querySelector('.cart-content');
   }
 
-  render = (d) => {
+  render = (d, total) => {
     const str = `    
         <div class="modal-header">
           <h5 class="modal-title" id="cartModalLabel">My Cart</h5>
@@ -18,6 +18,8 @@ export default class CartView {
         <div class="modal-body d-flex flex-column">
           ${d.length ? d.map(this.renderProduct).join('') :
           'No items in cart'}
+          <hr>
+          <strong>Total: $${total}</strong>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -31,10 +33,10 @@ export default class CartView {
   renderProduct = (product) => {
     const {id, title, quantity, price} = product;
     return `
-      <div class="d-flex">
-      <span>${id} ${title}</span>
+      <div class="d-flex justify-content-between mx-3">
+      <span class='flex-grow-1'>${title} x </span>
       <input class="flex-shrink-1" type="number" value="${quantity}"
-      <span>-$${price}</span>
+      <span class='flex-grow-1 ms-auto'>- $${price}</span>
       </div>
     `;
   }

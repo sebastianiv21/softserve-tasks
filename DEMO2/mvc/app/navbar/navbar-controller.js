@@ -11,9 +11,8 @@ export default class NavbarController {
     Publisher.subscribe('UPDATE_CART', this.handleCartBtnData);
   }
 
-  handleCartBtnData = (d) => { 
-    const total = this.model.calcTotalPrice(d)
-    const quantity = this.model.calcTotalItems(d);
+  handleCartBtnData = (d) => {
+    const {total, quantity} = d;
     this.view.render(total, quantity);
   };
 }

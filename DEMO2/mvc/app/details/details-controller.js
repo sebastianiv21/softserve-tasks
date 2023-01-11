@@ -4,7 +4,7 @@ import DetailsView from './details-view.js';
 
 export default class DetailsController {
   constructor() {
-    this.view = new DetailsView();
+    this.view = new DetailsView(this.handleAddToCart);
     this.model = new DetailsModel(this.handleLoadData);
 
     Publisher.subscribe('SHOW_DETAILS', this.handleProductId);
@@ -17,4 +17,8 @@ export default class DetailsController {
   handleProductId = (id) => {
     this.model.loadData(id);
   };
+
+  handleAddToCart = (ev) => {
+    Publisher.notify('ADD_FROM_DETAILS', ev)
+  }
 }

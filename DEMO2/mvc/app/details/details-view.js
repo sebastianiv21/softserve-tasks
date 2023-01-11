@@ -3,10 +3,11 @@ import template from "./details-template.js";
 export default class DetailsView {
   DOM_DETAILS_CONTAINER = document.querySelector('.details-container');
 
-  constructor() {
+  constructor(addToCart) {
     this.DOM_DETAILS_CONTAINER.insertAdjacentHTML('afterbegin', template);
 
-    this.DOM_DETAILS_CONTENT = this.DOM_DETAILS_CONTAINER.querySelector('.details-content')
+    this.DOM_DETAILS_CONTENT = this.DOM_DETAILS_CONTAINER.querySelector('.details-content');
+    this.DOM_DETAILS_CONTENT.addEventListener('click', addToCart);
   }
 
   render = (d) => {
@@ -37,7 +38,7 @@ export default class DetailsView {
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Add to cart</button>
+          <button type="button" class="btn btn-primary btn-details-add" data-add-product='${JSON.stringify(d)}'>Add to cart</button>
         </div>
     `;
     this.DOM_DETAILS_CONTENT.innerHTML = '';

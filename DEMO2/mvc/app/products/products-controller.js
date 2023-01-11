@@ -12,6 +12,7 @@ export default class ProductController {
     Publisher.subscribe('LOAD_CATEGORIES', this.handleLoadCategories);
     Publisher.subscribe('ORDER_BY_PRICE', this.handleSortByPrice);
     Publisher.subscribe('SEARCH', this.handleSearch);
+    Publisher.subscribe('ADD_FROM_DETAILS', this.handleAddToCart);
   }
 
   handleLoadData = (d) => {

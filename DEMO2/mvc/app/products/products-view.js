@@ -9,7 +9,7 @@ export default class ProductView {
   render = (d) => {
     const str = `
     <section class="container">
-      <div class="row gx-3 row-cols-lg-4 row-cols-md-2 row-cols-1 justify-content-center">
+      <div class="row gx-3 row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-1 justify-content-center">
       ${d.map(this.renderProduct).join('')}
       </div>
     </section>
@@ -38,7 +38,7 @@ export default class ProductView {
         </div>
         <!--Product actions-->
           <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <div class="d-flex text-center gap-2 justify-content-center">
+            <div class="d-flex flex-column flex-md-row text-center gap-2 justify-content-center">
               <button type="button" data-product-id="${id}" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#detailsModal">Details</button>
               <button type="button" data-add-product='${JSON.stringify(product)}' class="btn btn-primary">Add to cart</button>
             </div>
