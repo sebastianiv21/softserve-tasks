@@ -51,7 +51,6 @@ export default class ProductController {
     const product = ev.target.dataset.addProduct;
     if (product) {
       const parsedProduct = this.model.parseProduct(product)
-      console.log(parsedProduct);
       Publisher.notify('ADD_TO_CART', parsedProduct);
     }
   }

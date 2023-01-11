@@ -5,7 +5,7 @@ import CartView from './cart-view.js';
 export default class CartController {
   constructor() {
     this.model = new CartModel(this.handleLoadData);
-    this.view = new CartView(this.handleDeleteFromCart);
+    this.view = new CartView(this.handleDeleteFromCart, this.handleChangeQuantity, this.handleMakeOrder);
 
     this.model.loadData();
     Publisher.subscribe('ADD_TO_CART', this.handleAddToCart);
@@ -24,9 +24,27 @@ export default class CartController {
   };
 
   handleDeleteFromCart = (ev) => {
-    const productId = ev.target.dataset.productId;
+    const productId = ev.target.dataset.deleteId;
     if (productId) {
       this.model.deleteFromCart(productId);
     }
   };
+
+  handleChangeQuantity = (ev) => {
+    const value = Number(ev.target.value);
+    const product = ev.target.dataset.inputProduct;
+    if (product) {
+      const parsedProduct = this.model.parseObject(product);
+
+      this.model.changeQuantity(parsedProduct, value);
+    }
+  }
+
+  handleMakeOrder = (ev) => {
+    const cart = ev.target.dataset.makeOrder;
+    if (cart) {
+      const parsedCart = this.model.parseObject(cart);
+      this.model.makeOrder(parsedCart);
+    }
+  }
 }

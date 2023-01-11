@@ -3,11 +3,13 @@ import template from "./cart-template.js";
 export default class CartView {
   DOM_CART_CONTAINER = document.querySelector('.cart-container');
 
-  constructor(deleteFromCart){
+  constructor(deleteFromCart, changeQuantity, makeOrder){
     this.DOM_CART_CONTAINER.insertAdjacentHTML('afterbegin', template);
 
     this.DOM_CART_CONTENT = this.DOM_CART_CONTAINER.querySelector('.cart-content');
     this.DOM_CART_CONTENT.addEventListener('click', deleteFromCart);
+    this.DOM_CART_CONTENT.addEventListener('click', makeOrder);
+    this.DOM_CART_CONTENT.addEventListener('input', changeQuantity);
   }
 
   render = (d, total) => {
@@ -24,12 +26,11 @@ export default class CartView {
         </div>
         <div class="modal-footer border-0">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Make order</button>
+          <button type="button" class="btn btn-primary" data-make-order='${JSON.stringify(d)}' data-bs-toggle="modal" data-bs-target="#formOrderModal">Make order</button>
         </div>
     `;
     this.DOM_CART_CONTENT.innerHTML = '';
     this.DOM_CART_CONTENT.insertAdjacentHTML('afterbegin', str);
-
   };
   
   renderProduct = (product) => {
@@ -40,8 +41,8 @@ export default class CartView {
       <span>-</span>
       <span>$${price}</span>
       <span>x</span>
-      <input class="w-25" type="number" value="${quantity}">
-      <i class="bi bi-trash3-fill btn btn-danger btn-sm" data-product-id="${id}"></i>
+      <input class="w-25" type="number" data-input-product='${JSON.stringify(product)}' value="${quantity}">
+      <i class="bi bi-trash3-fill btn btn-danger btn-sm" data-delete-id="${id}"></i>
       </div>
     `;
   }

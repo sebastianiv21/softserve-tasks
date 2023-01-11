@@ -21,9 +21,7 @@ export default class CartModel {
       const cartElement = { id, title, quantity: 1, price };
       this.cartItems.push(cartElement);
     }
-
-    console.log('add to cart', this.cartItems);
-    this.loadData(this.cartItems);
+    this.loadData();
   };
 
   incrementByOne = (item) => {
@@ -55,8 +53,28 @@ export default class CartModel {
   deleteFromCart = (id) => {
     const index = this.cartItems.findIndex((elem) => elem.id === id);
     this.cartItems.splice(index, 1);
-    this.loadData(this.cartItems);
+    this.loadData();
   };
+
+  changeQuantity = (item, value) => {
+    const itemFound = this.cartItems.find((el) => el.id === item.id);
+    
+    if (value<=0){
+      itemFound.quantity = 1
+    }  else {
+      itemFound.quantity = value;
+    }
+
+    this.loadData()
+  }
+
+  parseObject(object){
+    return JSON.parse(object);
+  }
+
+  makeOrder = cart => {
+    console.log(cart)
+  }
 
   // function changeObjectProperty(arr, obj, propName, newValue) {
   //   let foundObject = arr.find(elem => elem.id === obj.id);
