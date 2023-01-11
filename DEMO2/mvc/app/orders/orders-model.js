@@ -10,7 +10,6 @@ export default class OrdersModel {
   }
 
   addNewOrder = d => {
-    console.log('new order', d)
     this.orders.push(d);
     localStorage.setItem('orders', JSON.stringify(this.orders));
   }

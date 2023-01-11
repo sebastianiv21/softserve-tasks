@@ -1,5 +1,5 @@
 export default class ProductModel {
-  #DATA_LINK = 'https://dummyjson.com/products?limit=10';
+  #DATA_LINK = 'https://dummyjson.com/products?limit=100';
   #filteredData = null;
   #isRightDirection = true;
   #data = [];
@@ -46,6 +46,18 @@ export default class ProductModel {
       this.#filteredData = this.#data.filter(({ title }) => {
         const text = `${title}`;
         return regSearch.test(text);
+      });
+    } else {
+      this.#filteredData = [...this.#data];
+    }
+
+    return this.#sort();
+  };
+
+  filterBy = (categories) => {
+    if (categories.length) {
+      this.#filteredData = this.#data.filter(({ category }) => {
+        return categories.includes(category);
       });
     } else {
       this.#filteredData = [...this.#data];

@@ -17,7 +17,8 @@ export default class FilterController {
     }
 
     handleChangeFilter = ev => {
-        console.log(ev.target.value);
-        Publisher.notify('FILTER_CATEGORIES', ev.target.value);
+        const category = ev.target.value;
+        const selectedCategories = this.model.addOrRemove(category);
+        Publisher.notify('FILTER_CATEGORIES', selectedCategories);
     }
 }

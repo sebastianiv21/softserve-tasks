@@ -29,9 +29,7 @@ export default class ProductController {
   };
 
   handleFilterCategories = (categories) => {
-    console.log('filter', categories);
-    //! change sorting method
-    const data = this.model.sortByPrice();
+    const data = this.model.filterBy(categories);
     this.view.render(data);
   };
 
