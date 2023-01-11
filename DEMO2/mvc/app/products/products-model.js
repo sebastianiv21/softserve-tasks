@@ -57,4 +57,8 @@ export default class ProductModel {
   set categories(categories) {
     this.#categories = categories;
   }
+
+  parseProduct(product){
+    return JSON.parse(product);
+  }
 }

@@ -1,8 +1,9 @@
 export default class ProductView {
   DOM_PRODUCTS_LIST = document.querySelector('.products-list');
 
-  constructor(callback){
-    this.DOM_PRODUCTS_LIST.addEventListener('click', callback);
+  constructor(showDetails, addToCart){
+    this.DOM_PRODUCTS_LIST.addEventListener('click', showDetails);
+    this.DOM_PRODUCTS_LIST.addEventListener('click', addToCart);
   }
 
   render = (d) => {
@@ -15,12 +16,10 @@ export default class ProductView {
     `;
     this.DOM_PRODUCTS_LIST.innerHTML = '';
     this.DOM_PRODUCTS_LIST.insertAdjacentHTML('afterbegin', str);
-
-    this.DOM_BTN_DETAILS = this.DOM_PRODUCTS_LIST.querySelector('.btn-show-details');
-
   };
 
-  renderProduct = ({ title, price, thumbnail, category, id }) => {
+  renderProduct = (product) => {
+    const { title, price, thumbnail, category, id } = product;
     return `
     <div class="col mb-3">
       <div class="card h-100">
@@ -40,8 +39,8 @@ export default class ProductView {
         <!--Product actions-->
           <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
             <div class="d-flex text-center gap-2 justify-content-center">
-              <button type="button" data-product-id="${id}" class="btn btn-outline-info btn-show-details" data-bs-toggle="modal" data-bs-target="#detailsModal">Details</button>
-              <button type="button" class="btn btn-primary">Add to cart</button>
+              <button type="button" data-product-id="${id}" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#detailsModal">Details</button>
+              <button type="button" data-add-product='${JSON.stringify(product)}' class="btn btn-primary">Add to cart</button>
             </div>
           </div>
       </div>
