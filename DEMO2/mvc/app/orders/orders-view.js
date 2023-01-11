@@ -26,19 +26,33 @@ export default class OrdersView {
     this.DOM_ORDERS_CONTENT.insertAdjacentHTML('afterbegin', str);
   };
 
-  renderOrder = (product) => {
-    const { id, title, quantity, price } = product;
+  renderOrder = ({cart, formData}) => {
+    const {name, phone, email} = formData;
+
     return `
-      <div class="d-flex justify-content-between align-items-center mx-3">
-      <span>${title}</span>
-      <span>-</span>
-      <span>$${price}</span>
-      <span>x</span>
-      <input class="w-25" type="number" data-input-product='${JSON.stringify(
-        product
-      )}' value="${quantity}">
-      <i class="bi bi-trash3-fill btn btn-danger btn-sm" data-delete-id="${id}"></i>
+      <div class="d-flex justify-content-between">
+      <div>
+      <strong>Order Info</strong>
+      <p class='m-0'><strong>Name:</strong> ${name}</p>
+      <p class='m-0'><strong>Phone:</strong> ${phone}</p>
+      <p class='m-0'><strong>Email:</strong> ${email}</p>
       </div>
+      <div>
+        <strong>Order Items</strong>
+        ${cart.map(this.renderCartItems).join('')}
+      </div>
+      </div>
+      <hr class="m-1">
     `;
   };
+
+  renderCartItems = ({title, quantity}) => {
+    return `
+        <div>
+          <span>${title}</span>
+          <span>x</span>
+          <span>${quantity}</span>
+        </div>
+    `;
+  }
 }

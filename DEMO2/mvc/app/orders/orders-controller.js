@@ -8,10 +8,15 @@ export default class OrdersController {
     this.view = new OrdersView();
 
     this.model.loadData();
-    Publisher.subscribe('ON_CREATE_NEW_ORDER', this.handleLoadData);
+    Publisher.subscribe('ON_CREATE_NEW_ORDER', this.handleNewOrder);
   }
 
   handleLoadData = (d) => {
     this.view.render(d);
+  };
+
+  handleNewOrder = (d) => {
+    this.model.addNewOrder(d);
+    this.view.render(this.model.orders);
   };
 }

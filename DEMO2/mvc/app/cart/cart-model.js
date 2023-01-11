@@ -72,6 +72,14 @@ export default class CartModel {
     return JSON.parse(object);
   }
 
+  set cartItems(cartItems){
+    this.cartItems = cartItems;
+  }
+
+  get cartItems(){
+    return this.cartItems;
+  }
+
   // function changeObjectProperty(arr, obj, propName, newValue) {
   //   let foundObject = arr.find(elem => elem.id === obj.id);
   //   if (foundObject) {

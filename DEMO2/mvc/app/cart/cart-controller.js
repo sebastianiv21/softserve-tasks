@@ -9,6 +9,7 @@ export default class CartController {
 
     this.model.loadData();
     Publisher.subscribe('ADD_TO_CART', this.handleAddToCart);
+    Publisher.subscribe('ON_CREATE_NEW_ORDER', this.handleResetCart)
   }
 
   handleLoadData = (d) => {
@@ -46,5 +47,9 @@ export default class CartController {
       const parsedCart = this.model.parseObject(cart);
       Publisher.notify('SET_CART_ORDER', parsedCart);
     }
+  }
+
+  handleResetCart = _ => {
+    this.handleLoadData([])
   }
 }
