@@ -5,21 +5,28 @@ import CartView from './cart-view.js';
 export default class CartController {
   constructor() {
     this.model = new CartModel(this.handleLoadData);
-    this.view = new CartView();
+    this.view = new CartView(this.handleDeleteFromCart);
 
     this.model.loadData();
     Publisher.subscribe('ADD_TO_CART', this.handleAddToCart);
   }
 
   handleLoadData = (d) => {
-    const total = this.model.calcTotalPrice(d)
+    const total = this.model.calcTotalPrice(d);
     const quantity = this.model.calcTotalItems(d);
-    const data = {total, quantity};
+    const data = { total, quantity };
     Publisher.notify('UPDATE_CART', data);
     this.view.render(d, total);
   };
 
   handleAddToCart = (d) => {
     this.model.addToCart(d);
+  };
+
+  handleDeleteFromCart = (ev) => {
+    const productId = ev.target.dataset.productId;
+    if (productId) {
+      this.model.deleteFromCart(productId);
+    }
   };
 }

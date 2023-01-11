@@ -12,27 +12,27 @@ export default class CartModel {
   }
 
   addToCart = (item) => {
-    const itemFound = this.cartItems.find(el => el.id === item.id);
+    const itemFound = this.cartItems.find((el) => el.id === item.id);
     const inCart = itemFound !== undefined;
     if (inCart) {
-      this.incrementByOne(itemFound)
+      this.incrementByOne(itemFound);
     } else {
-      const {id, title, price} = item;
-      const cartElement = {id, title, quantity: 1, price};
+      const { id, title, price } = item;
+      const cartElement = { id, title, quantity: 1, price };
       this.cartItems.push(cartElement);
     }
-    
-    console.log('add to cart', this.cartItems)
-    this.loadData(this.cartItems)
+
+    console.log('add to cart', this.cartItems);
+    this.loadData(this.cartItems);
   };
 
   incrementByOne = (item) => {
     item.quantity += 1;
-  }
+  };
 
   calcTotalPrice = (d) => {
     if (!d) {
-      return 0
+      return 0;
     }
     const total = d.reduce((acc, el) => {
       acc = acc + el.price * el.quantity;
@@ -43,7 +43,7 @@ export default class CartModel {
 
   calcTotalItems = (d) => {
     if (!d) {
-      return 0
+      return 0;
     }
     const items = d.reduce((acc, el) => {
       acc = acc + el.quantity;
@@ -51,14 +51,19 @@ export default class CartModel {
     }, this.#data);
     return items;
   };
+
+  deleteFromCart = (id) => {
+    const index = this.cartItems.findIndex((elem) => elem.id === id);
+    this.cartItems.splice(index, 1);
+    this.loadData(this.cartItems);
+  };
+
   // function changeObjectProperty(arr, obj, propName, newValue) {
   //   let foundObject = arr.find(elem => elem.id === obj.id);
   //   if (foundObject) {
   //     foundObject[propName] = newValue;
   //   }
   //}
-  
-  
 }
 
 // how to know if an object is in an array in js?
