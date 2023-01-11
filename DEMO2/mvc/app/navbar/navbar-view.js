@@ -9,7 +9,7 @@ export default class NavbarView {
     this.DOM_CART_BTN = this.DOM_NAVBAR.querySelector('.cart-btn-data');
   }
 
-  render = (total=0, quantity=0) => {
+  render = (total = 0, quantity = 0) => {
     const str = `
     <span>$${total}</span>
       <i class="bi bi-cart4 fs-5 ms-1"></i>
@@ -17,7 +17,7 @@ export default class NavbarView {
       ${quantity}
       </span>
       `;
-      this.DOM_CART_BTN.innerHTML = '';
-      this.DOM_CART_BTN.insertAdjacentHTML('afterbegin', str);
-  }
+    this.DOM_CART_BTN.innerHTML = '';
+    this.DOM_CART_BTN.insertAdjacentHTML('afterbegin', str);
+  };
 }

@@ -26,7 +26,7 @@ export default class CartView {
         </div>
         <div class="modal-footer border-0">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" data-make-order='${JSON.stringify(d)}' data-bs-toggle="modal" data-bs-target="#formOrderModal">Make order</button>
+          ${d.length ? `<button type="button" class="btn btn-primary" data-make-order='${JSON.stringify(d)}' data-bs-toggle="modal" data-bs-target="#formOrderModal">Make order</button>` : ''}
         </div>
     `;
     this.DOM_CART_CONTENT.innerHTML = '';

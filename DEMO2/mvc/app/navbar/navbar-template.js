@@ -5,6 +5,7 @@ const template = `
     <span>SoftShop</span>
   </a>
   <div class="d-flex align-items-center me-2">
+    <button type="button" class="btn btn-primary my-orders-btn me-2" data-bs-toggle="modal" data-bs-target="#myOrdersModal">My Orders</button>
     <button type="button" class="btn btn-primary p-1 position-relative cart-btn-data" data-bs-toggle="modal" data-bs-target="#cartModal"></button>
   </div>
 </div>
